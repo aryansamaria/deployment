@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login|Signup</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(148, 148, 148, 0.8),rgba(0,0,50,0.8)),url(i1.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.nav a{
+    display: flex;
+    width: 100%;
+    padding: 20px 40px;
+    text-decoration: none;
+    font-size: 20px;
+    color: aliceblue;
+}
+.nav buttonl{
+    text-decoration: none;
+    font-size: 20px;
+    color: aliceblue;
+}
+.formb{
+    width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 50px 60px 70px;
+    text-align: center;
+}
+.formb h1{
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: #3c00a0;
+    position:relative;
+}
+.inputfield{
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    max-height: 65px;
+    transition: max-height 0.5s;
+    overflow: hidden;
+}
+input{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+}
+.inputfield i{
+    margin-left: 15px;
+    color: #999;
+}
+form p{
+    text-align: left;
+    font-size: 13px;
+}
+form p a{
+    text-decoration: none;
+    color: #3c00a0;
+}
+.btnfield{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.btnfield button{
+    flex-basis: 48%;
+    background: #3c00a0;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+}
+.inputgroup{
+    height: 250px;
+}
+.btnfield button.disable{
+    color: #555;
+    background: #eaeaea
+    
+}
+    </style>
+    <script src="https://kit.fontawesome.com/a0098a6326.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a class="buttonl" href="./result.html">LearnSign2.O</a>
+        </div>
+        <div class="formb">
+            <h1 id="title">Sign Up</h1>
+            <form>
+                <div class="inputgroup">
+                    <div class="inputfield" id="namefield">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Name">
+                    </div>
+
+                    <div class="inputfield">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="signupEmailInput" placeholder="Email">
+                    </div>
+
+                    <div class="inputfield">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="signupPasswordInput" placeholder="Password">
+                    </div>
+                    <p>Lost Password <a href="#">Click Here!</a></p>
+                </div>
+                <div class="btnfield">
+                    <button type="button" id="signupbtn">Sign up</button>
+                    <button type="button" id="signinbtn" class="disable">Sign in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+       document.getElementById("buttonl").addEventListener("click", function() {
+    // Redirect to the login page
+    window.location.href = "result.html";
+});
+ 
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            
+
+apiKey: "AIzaSyANbs6xL-LtYKy9jen2lJXuWS-V4X9TPss",
+
+authDomain: "learnsign-91f25.firebaseapp.com",
+
+databaseURL: "https://learnsign-91f25-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+projectId: "learnsign-91f25",
+
+storageBucket: "learnsign-91f25.appspot.com",
+
+messagingSenderId: "588436282614",
+
+appId: "1:588436282614:web:aec4e7ae912990f1e5e0d7"
+
+};
+
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        const namefield = document.getElementById("namefield");
+
+        const signupbtn = document.getElementById("signupbtn");
+        signupbtn.addEventListener("click", function () {
+            namefield.style.maxHeight = "60px";
+            document.getElementById("title").innerHTML = "Sign Up";
+            signupbtn.classList.remove("disable");
+            signinbtn.classList.add("disable");
+
+            let email = document.getElementById("signupEmailInput").value;
+            let password = document.getElementById("signupPasswordInput").value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    let user = userCredential.user;
+                    console.log("User signed up:", user);
+                    alert("Sign-up successful! User ID: " + user.uid);
+                    window.location.href = "result.html";
+                })
+                .catch((error) => {
+                    let errorMessage = error.message;
+                    console.error("Sign-up error:", errorMessage);
+                    alert("Sign-up failed. Error: " + errorMessage);
+                });
+        });
+
+        const signinbtn = document.getElementById("signinbtn");
+        signinbtn.addEventListener("click", function () {
+            namefield.style.maxHeight = "0";
+            document.getElementById("title").innerHTML = "Sign In";
+            signupbtn.classList.add("disable");
+            signinbtn.classList.remove("disable");
+
+            let email = document.getElementById("signupEmailInput").value;
+            let password = document.getElementById("signupPasswordInput").value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    let user = userCredential.user;
+                    console.log("User signed in:", user);
+                    alert("Sign-in successful! User ID: " + user.uid);
+                    window.location.href = "result.html";
+                })
+                .catch((error) => {
+                    let errorMessage = error.message;
+                    console.error("Sign-in error:", errorMessage);
+                    alert("Sign-in failed. Error: " + errorMessage);
+                });
+        });
+    </script>
+</body>
+</html>

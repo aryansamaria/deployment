@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: "General Sans";
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.main{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(148, 148, 148, 0.8),rgba(0,0,50,0.8)),url(main.jpg);
+}
+.nav{
+    display: flex;
+    width: 100%;
+    padding: 20px 40px;
+    text-decoration: none;
+    font-size: 20px;
+    color: aliceblue;
+}
+.nav .button{
+    text-decoration: none;
+    font-size: 20px;
+    color: aliceblue;
+}
+.about{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 30px;
+    position: relative;
+}
+.about h1{
+    /* position: absolute; */
+    justify-content: center;
+    align-content: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    top: 0%;
+    
+}
+.about p{
+    /* margin-left: 200px;  */
+    align-items: center;
+    opacity: .8;
+    color: rgb(191, 214, 214);
+    line-height: 1;
+    font-family: "General Sans Medium";
+    font-size: 2vw;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding-bottom: 20px;
+}
+.about #im{
+    width: 35.80%;
+    
+}
+.main2{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(148, 148, 148, 0.8),rgba(0,0,50,0.8)),url(main.jpg);
+}
+.main2 h2{
+    justify-content: center;
+    padding-left: 450px;
+    align-content: center;
+    font-size: 45px;
+    margin-bottom: 50px;
+    top: 0%;
+}
+.main2 .feature{
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 10px;
+    display: flex;
+    opacity: .5;
+    color: rgb(246, 250, 250);
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+}
+.main2 .photos{
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* max-width: 80%; */
+    /* max-height: 50% */
+
+}
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="nav">
+           <a class="button" href="/result.html">LearnSign2.O</a>
+        </div>
+        <section class="about">
+            <h1>About Us</h1>
+            
+            <p>We offer society benefits by fostering inclusive learning, improving communication skills for the deaf and mute, promoting cultural understanding, and providing educational tools with instant feedback.</p>
+            <img id="im" src="/static/image/v5.jpeg" alt="">
+        </section>
+       
+    </div>
+    <div class="main2">
+        <h2>Awesome apps features</h2>
+      <div class="feature">
+            <h4>Leaderboard for the people by which they can use this ranking as their achievement which will be further useful for their job search and in career.</h3>
+            <h4>Its totally fine not knowing how to use technology. As long as you are willing to learn, we are always here to help you out!</h3> 
+            <h4>With this idea mute and deaf people can connect with others, their communities and they can make friends worldwide.</h4> 
+        </div>
+        <div class="photos">
+            <img width="1100px" height="210px" src="/static/image/v1.jpeg" alt="">
+            <img width="1100px" height="210px" src="/static/image/a6.jpg" alt="">
+            <img width="1100px" height="210px" src="/static/image/v2.jpeg" alt="">
+        </div>
+    </div>
+    <script>
+        document.getElementById("b").addEventListener("click", function() {
+    // Redirect to the login page
+    window.location.href = "result.html"; 
+});
+
+    </script>
+</body>
+</html>

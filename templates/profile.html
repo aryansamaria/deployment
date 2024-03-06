@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        /* Your existing CSS styles */
+        /* Add any additional styles for the profile form */
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="nav">
+           <li><a class="button" href="/templates/result.html">LearnSign2.O</a></li>
+        </div>
+        <div class="profile-info">
+            <h1>User Profile</h1>
+            <p>Email: <span id="user-email"></span></p>
+            <p>Name: <span id="user-name"></span></p>
+            <p>Age: <span id="user-age"></span></p>
+            <p>Gender: <span id="user-gender"></span></p>
+            <p>Mobile Number: <span id="user-mobile"></span></p>
+        </div>
+        <div class="profile-form">
+            <h2>Update Profile</h2>
+            <form id="profileForm">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" id="mobile" name="mobile">
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK script (if needed) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            // Your Firebase configuration
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Get reference to Firebase Auth
+        const auth = firebase.auth();
+        const user = auth.currentUser;
+
+        // Update profile information on page load
+        if (user) {
+            document.getElementById('user-email').innerText = user.email;
+            document.getElementById('user-name').innerText = user.displayName;
+            // Fetch additional profile information from Firestore or Realtime Database and update the respective fields
+            // Example: document.getElementById('user-age').innerText = user.age;
+            // Example: document.getElementById('user-gender').innerText = user.gender;
+            // Example: document.getElementById('user-mobile').innerText = user.mobile;
+        } else {
+            // Handle the case when user is not logged in
+            // Redirect the user to the login page or display a message
+            console.log('User is not logged in');
+            // Example: window.location.href = '/login.html';
+        }
+
+        // Handle profile form submission
+        const profileForm = document.getElementById('profileForm');
+        profileForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const mobile = document.getElementById('mobile').value;
+
+            // Update user profile information in Firestore or Realtime Database
+            // Example: firebase.firestore().collection('users').doc(user.uid).update({ age, gender, mobile })
+            // Example: firebase.database().ref('users/' + user.uid).update({ age, gender, mobile })
+        });
+    </script>
+</body>
+</html>

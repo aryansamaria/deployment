@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "General Sans";
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+#main{
+    width: 100%;
+    background-image: linear-gradient(rgba(148, 148, 148, 0.8),rgba(0,0,50,0.8)),url(main.jpg);
+
+
+}
+#hero{
+    color: aliceblue;
+    width: 100%;
+    height: 100vh;
+    /* background-color: black; */
+}
+#nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 40px;
+    color: aliceblue;
+}
+#nav1{
+    display: flex;
+    margin-left: -8vh;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 40px;
+
+}
+#nav a{
+    text-decoration: none;
+    font-size: 20px;
+    color: aliceblue;
+}
+#nav button{
+    text-decoration: none;
+    font-size: 20px;
+    color: aliceblue;
+}
+#heading{
+    margin-top: 90px;
+}
+#heading h1{
+    margin-left: 250px; 
+    /* align-items: center; */
+    opacity: .7;
+    line-height: 1;
+    font-family: "General Sans Medium";
+    font-size: 9vw;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+#heading #secondh1{
+    margin-left: 430px;
+}
+#model{
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5vw;
+    text-transform: uppercase;
+     text-align: center;
+}
+#smallpara{
+    font-size: 1.5vw;
+    text-transform: uppercase;
+    margin-top: 190px;
+    text-align: center;
+}
