@@ -17,7 +17,7 @@ html,body{
 }
 #main{
     width: 100%;
-    background-image: linear-gradient(rgba(148, 148, 148, 0.8),rgba(0,0,50,0.8)),url(main.jpg);
+    background-image: linear-gradient(rgba(148, 148, 148, 0.8),rgba(0,0,50,0.8)),url(/static/image/main.jpg);
 
 
 }
@@ -103,10 +103,10 @@ html,body{
             <div id="nav">
                 <div id="nav1">
                 <a href="#">LearnSign2.O</a>
-                <a id="buttona" href="/about" style="cursor: pointer;">About</a>
+                <a id="buttona" href="/about.html" style="cursor: pointer;">About</a>
                 </div>
                 <div id="nav2">
-                    <a id="button" href="/login" style="cursor: pointer;">Login</a>
+                    <a id="button" href="/login.html" style="cursor: pointer;">Login</a>
                 </div>
             </div>
             <div id="heading">
@@ -125,6 +125,42 @@ html,body{
         <h2>CONTACT US</h2>
         <h3 id="mail"><a href="mailto:aryansamaria44@gmail.com">aryansamaria44@gmail.com</a></h3>
     </div>
+    <script>
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyANbs6xL-LtYKy9jen2lJXuWS-V4X9TPss",
+    authDomain: "learnsign-91f25.firebaseapp.com",
+    databaseURL: "https://learnsign-91f25-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "learnsign-91f25",
+    storageBucket: "learnsign-91f25.appspot.com",
+    messagingSenderId: "588436282614",
+    appId: "1:588436282614:web:aec4e7ae912990f1e5e0d7"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Assuming your login button has an id of "button"
+const loginButton = document.getElementById("button");
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in
+        console.log("User is logged in:", user);
+        loginButton.style.display = "none"; // Hide the login button
+        // You can perform actions for logged-in users here
+    } else {
+        // No user is signed in
+        console.log("No user is logged in.");
+        loginButton.style.display = "block"; // Show the login button
+        // You can redirect to the login page or perform other actions for non-logged-in users here
+    }
+});
+
+    </script>
 
 </body>
 </html>

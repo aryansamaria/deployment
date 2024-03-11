@@ -55,11 +55,11 @@ def index():
 def result():
     return render_template('result.html')
 
-@app.route('/login')
+@app.route('/login.html')
 def login():
     return render_template('login.html')
 
-@app.route('/about')
+@app.route('/about.html')
 def about():
     return render_template('about.html')
 
