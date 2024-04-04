@@ -104,125 +104,123 @@ form p a{
 }
     </style>
     <script src="https://kit.fontawesome.com/a0098a6326.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="nav">
-            <a class="buttonl" href="/result.html">LearnSign2.O</a>
+    </head>
+    <body>
+        <div class="container">
+            <div class="nav">
+                <a class="buttonl" href="/result.html">LearnSign2.O</a>
+            </div>
+            <div class="formb">
+                <h1 id="title">Sign Up</h1>
+                <form>
+                    <div class="inputgroup">
+                        <div class="inputfield" id="namefield">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Name">
+                        </div>
+    
+                        <div class="inputfield">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="signupEmailInput" placeholder="Email">
+                        </div>
+    
+                        <div class="inputfield">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="signupPasswordInput" placeholder="Password">
+                        </div>
+                        <p id="forgot">Lost Password <a href="#" id="forgotLink">Click Here!</a></p>
+                    </div>
+                    <div class="btnfield">
+                        <button type="button" id="signupbtn">Sign up</button>
+                        <button type="button" id="signinbtn" class="disable">Sign in</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="formb">
-            <h1 id="title">Sign Up</h1>
-            <form>
-                <div class="inputgroup">
-                    <div class="inputfield" id="namefield">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Name">
-                    </div>
-
-                    <div class="inputfield">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" id="signupEmailInput" placeholder="Email">
-                    </div>
-
-                    <div class="inputfield">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" id="signupPasswordInput" placeholder="Password">
-                    </div>
-                    <p>Lost Password <a href="#">Click Here!</a></p>
-                </div>
-                <div class="btnfield">
-                    <button type="button" id="signupbtn">Sign up</button>
-                    <button type="button" id="signinbtn" class="disable">Sign in</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <script>
-       document.getElementById("buttonl").addEventListener("click", function() {
-    // Redirect to the login page
-    window.location.href = "result.html";
-});
- 
-    </script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            
-
-apiKey: "AIzaSyANbs6xL-LtYKy9jen2lJXuWS-V4X9TPss",
-
-authDomain: "learnsign-91f25.firebaseapp.com",
-
-databaseURL: "https://learnsign-91f25-default-rtdb.asia-southeast1.firebasedatabase.app",
-
-projectId: "learnsign-91f25",
-
-storageBucket: "learnsign-91f25.appspot.com",
-
-messagingSenderId: "588436282614",
-
-appId: "1:588436282614:web:aec4e7ae912990f1e5e0d7"
-
-};
-
-
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
-
-        const namefield = document.getElementById("namefield");
-
-        const signupbtn = document.getElementById("signupbtn");
-        signupbtn.addEventListener("click", function () {
-            namefield.style.maxHeight = "60px";
-            document.getElementById("title").innerHTML = "Sign Up";
-            signupbtn.classList.remove("disable");
-            signinbtn.classList.add("disable");
-
-            let email = document.getElementById("signupEmailInput").value;
-            let password = document.getElementById("signupPasswordInput").value;
-
-            createUserWithEmailAndPassword(auth, email, password)
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+            import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyANbs6xL-LtYKy9jen2lJXuWS-V4X9TPss",
+              authDomain: "learnsign-91f25.firebaseapp.com",
+              databaseURL: "https://learnsign-91f25-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "learnsign-91f25",
+              storageBucket: "learnsign-91f25.appspot.com",
+              messagingSenderId: "588436282614",
+              appId: "1:588436282614:web:aec4e7ae912990f1e5e0d7"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth();
+          
+            const namefield = document.getElementById("namefield");
+            const signupbtn = document.getElementById("signupbtn");
+            const signinbtn = document.getElementById("signinbtn");
+            const forgotLink = document.getElementById("forgotLink");
+          
+            signupbtn.addEventListener("click", function () {
+              namefield.style.maxHeight = "60px";
+              document.getElementById("title").innerHTML = "Sign Up";
+              signupbtn.classList.remove("disable");
+              signinbtn.classList.add("disable");
+          
+              let email = document.getElementById("signupEmailInput").value;
+              let password = document.getElementById("signupPasswordInput").value;
+          
+              createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    let user = userCredential.user;
-                    console.log("User signed up:", user);
-                    alert("Sign-up successful! User ID: " + user.uid);
-                    window.location.href = "result.html";
+                  let user = userCredential.user;
+                  console.log("User signed up:", user);
+                  alert("Sign-up successful! User ID: " + user.uid);
+                  window.location.href = "result.html";
                 })
                 .catch((error) => {
-                    let errorMessage = error.message;
-                    console.error("Sign-up error:", errorMessage);
-                    alert("Sign-up failed. Error: " + errorMessage);
+                  let errorMessage = error.message;
+                  console.error("Sign-up error:", errorMessage);
+                  alert("Sign-up failed. Error: " + errorMessage);
                 });
-        });
-
-        const signinbtn = document.getElementById("signinbtn");
-        signinbtn.addEventListener("click", function () {
-            namefield.style.maxHeight = "0";
-            document.getElementById("title").innerHTML = "Sign In";
-            signupbtn.classList.add("disable");
-            signinbtn.classList.remove("disable");
-
-            let email = document.getElementById("signupEmailInput").value;
-            let password = document.getElementById("signupPasswordInput").value;
-
-            signInWithEmailAndPassword(auth, email, password)
+            });
+          
+            signinbtn.addEventListener("click", function () {
+              namefield.style.maxHeight = "0";
+              document.getElementById("title").innerHTML = "Sign In";
+              signupbtn.classList.add("disable");
+              signinbtn.classList.remove("disable");
+          
+              let email = document.getElementById("signupEmailInput").value;
+              let password = document.getElementById("signupPasswordInput").value;
+          
+              signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    let user = userCredential.user;
-                    console.log("User signed in:", user);
-                    alert("Sign-in successful! User ID: " + user.uid);
-                    window.location.href = "result.html";
+                  let user = userCredential.user;
+                  console.log("User signed in:", user);
+                  alert("Sign-in successful! User ID: " + user.uid);
+                  window.location.href = "result.html";
                 })
                 .catch((error) => {
-                    let errorMessage = error.message;
-                    console.error("Sign-in error:", errorMessage);
-                    alert("Sign-in failed. Error: " + errorMessage);
+                  let errorMessage = error.message;
+                  console.error("Sign-in error:", errorMessage);
+                  alert("Sign-in failed. Error: " + errorMessage);
                 });
-        });
-    </script>
-</body>
-</html>
+            });
+          
+            forgotLink.addEventListener('click', function(event) {
+              event.preventDefault(); // Prevent the default link behavior
+              let email = document.getElementById("signupEmailInput").value;
+              sendPasswordResetEmail(auth, email)
+                .then(() => {
+                  alert("Password reset link has been sent to your Email");
+                })
+                .catch((error) => {
+                  console.error("Password reset error:", error);
+                  alert("Failed to send reset link. Error: " + error.message);
+                });
+            });
+          </script>
+    </body>
+    </html>
+    
+
